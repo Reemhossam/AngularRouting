@@ -3,11 +3,12 @@ import { CourseService } from '../Services/course.service';
 import { Course } from '../Models/course';
 import { CommonModule } from '@angular/common';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CommonModule,CourseDetailComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
