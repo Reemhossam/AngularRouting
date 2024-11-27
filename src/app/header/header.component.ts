@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,16 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
+  route:ActivatedRoute= inject(ActivatedRoute);
+  ngOnInit() {
+    this.route.fragment.subscribe((fragment: string | null) => {
+      if (fragment)
+        this.JumbToSection(fragment);
+    });
+  }
+  JumbToSection(section){
+      document.getElementById(section).scrollIntoView({behavior:'smooth'});
+  }
 
 }
