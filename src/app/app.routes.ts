@@ -5,6 +5,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CoursesComponent } from './courses/courses.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CourseDetailComponent } from './courses/course-detail/course-detail.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -17,5 +18,6 @@ export const routes: Routes = [
     {path:'Course/:id', component:CourseDetailComponent},
   ]},
   //{path:'Courses/Course/:id', component:CourseDetailComponent},
+  {path:'Login',component:LoginComponent},
   {path:'**', component:NotFoundComponent}
 ];
