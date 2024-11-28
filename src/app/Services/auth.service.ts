@@ -1,7 +1,9 @@
 import { inject, Injectable } from "@angular/core";
 import { UserService } from "./user.service";
 
-Injectable()
+@Injectable(
+  {providedIn:'root'}
+)
 export class AuthService{
     isLogged: boolean = false;
     userService: UserService = inject(UserService)
@@ -15,7 +17,6 @@ export class AuthService{
     }
 
     logout(){
-        console.log(`isLogged is ${this.isLogged}`);
         this.isLogged = false;
 
     }

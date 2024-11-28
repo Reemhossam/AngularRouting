@@ -2,7 +2,9 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Course } from "../Models/course";
 
-@Injectable()
+@Injectable(
+  {providedIn:'root'}
+)
 export class CourseService{
     private description: string = `"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris

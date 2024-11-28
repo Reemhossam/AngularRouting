@@ -1,5 +1,8 @@
+import { Injectable } from "@angular/core";
 import { User } from "../Models/user";
-
+@Injectable(
+  {providedIn:'root'}
+)
 export class UserService{
     users :User[]=[
         new User(1, 'John Smith', 'js', 'Admin12345*'),

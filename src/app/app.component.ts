@@ -7,6 +7,7 @@ import { CourseService } from './Services/course.service';
 import { ServicesService } from './Services/services.service';
 import { UserService } from './Services/user.service';
 import { AuthService } from './Services/auth.service';
+import { AuthGuardService } from './Services/authGuard.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ import { AuthService } from './Services/auth.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers:[
-    CourseService, ServicesService, UserService, AuthService
+    //CourseService, ServicesService, UserService, AuthService, AuthGuardService
   ]
 })
 export class AppComponent {

@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit{
     this.activeRoute.queryParamMap.subscribe((data)=>{
       if (Boolean(data.get('logout')))
       {
-        this.authService.logout;
-       // alert(`you are now logout, is logged = ${this.authService.isLogged}`);
+        this.authService.logout();
+        alert(`you are now logout, is logged = ${this.authService.isLogged}`);
       }
     })
   }
