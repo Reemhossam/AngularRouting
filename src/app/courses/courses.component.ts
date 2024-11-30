@@ -14,13 +14,17 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 })
 export class CoursesComponent implements OnInit{
    coursesService = inject(CourseService);
-   AllCourses: Course[] = this.coursesService.courses;
+   route:ActivatedRoute  = inject(ActivatedRoute)
+   AllCourses: Course[];
+
    activeroute:ActivatedRoute = inject(ActivatedRoute);
 
    ngOnInit(): void {
-   this.activeroute.queryParamMap.subscribe((data)=>{
-    if(data.get('search'))
-       this.AllCourses=this.AllCourses.filter(t =>t.title.toLowerCase().includes(data.get('search').toLowerCase()));
-   })
+      this.AllCourses=this.route.snapshot.data['courses'];
+
+      this.activeroute.queryParamMap.subscribe((data)=>{
+      if(data.get('search'))
+         this.AllCourses=this.AllCourses.filter(t =>t.title.toLowerCase().includes(data.get('search').toLowerCase()));
+      })
    }
 }

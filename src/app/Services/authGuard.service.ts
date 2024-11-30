@@ -1,8 +1,11 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanDeactivate, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from "@angular/router";
-import { Observable } from "rxjs";
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanDeactivate, GuardResult, MaybeAsync, Resolve, Router, RouterStateSnapshot } from "@angular/router";
+import { delay, Observable, of } from "rxjs";
 import { AuthService } from "./auth.service";
 import { ContactComponent } from "../contact/contact.component";
+import { CoursesComponent } from "../courses/courses.component";
+import { Course } from "../Models/course";
+import { CourseService } from "./course.service";
 
 export interface IDeactivateComponent{
   canExit: () =>boolean | Observable<boolean> | Promise<boolean>
@@ -11,8 +14,8 @@ export interface IDeactivateComponent{
 @Injectable(
   {providedIn:'root'}
 )
-export class AuthGuardService implements CanActivate, CanActivateChild, CanDeactivate<IDeactivateComponent>{
-  constructor(private authService: AuthService, private router: Router){};
+export class AuthGuardService implements CanActivate, CanActivateChild, CanDeactivate<IDeactivateComponent>, Resolve<Course[]>{
+  constructor(private authService: AuthService, private router: Router, private coursesService: CourseService){};
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean>  | Promise<boolean> {
 
     let isLoggedIn = this.authService.IsAuthenticated();
@@ -32,5 +35,15 @@ canDeactivate(component: IDeactivateComponent, currentRoute: ActivatedRouteSnaps
 
   return component.canExit();
 }
+
+resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Course[]| Observable<Course[]>  | Promise<Course[]> {
+  // let coursesList :Course[] = [];
+  // this.coursesService.getAllcourses().subscribe((courses:Course[])=>{
+  //   coursesList= courses;
+  // });
+  // return coursesList;
+  return this.coursesService.getAllcourses();
+}
+
 
 }
